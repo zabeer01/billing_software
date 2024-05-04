@@ -43,9 +43,23 @@
     </form>
 </div>
 <?php 
-/* $array = $website->customers->pluck('id')->toArray();
+/*
+    //here we need to send   @foreach ($customers as $customer) the keys of customer 
+    // it will be like associative array and we know the keys are customer_id
+    // we will get this by making punk('id')
+    //step 1
+    convert in array
+    //step 2
+    check if its converted in array 
+    //step 3
+    convert in jquery array so json format is needed for js or jquery 
+    json_encode is done for the option 
+
+$array = $website->customers->pluck('id')->toArray();
 foreach ($array as $item) {
     echo $item."<br>";
+ 
+
 } */
 
 ?>
@@ -62,6 +76,7 @@ foreach ($array as $item) {
 
             // Pre-selecting values
             var selectedValues = {!! json_encode($website->customers->pluck('id')->toArray()) !!};
+          
             $("#e9").val(selectedValues).trigger('change');
         });
     </script>
