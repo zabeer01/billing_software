@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('customer_website', function (Blueprint $table) {
             $table->id();
             $table->integer('website_id');
-            $table->integer('custoemr_id');
+            $table->integer('customer_id');
             $table->timestamps();
         });
     }
