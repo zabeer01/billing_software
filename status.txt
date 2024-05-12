@@ -4,3 +4,5 @@ customer crud completed
 websites crud 
 websites and customer pivot tables
 one website belongs to many customer done. 
+relational database completed.. 
+customer and websites are filtered out. 
