@@ -18,7 +18,16 @@ class BillController extends Controller
         $customers = Customer::whereHas('websites', function ($query) use ($website_name) {
             $query->where('name', $website_name);
         })->get();
-        return view('bills.index',compact('customers'));
+        $customerIds = $customers->pluck('id')->toArray();
+           // Retrieve the websites owned by all three customers
+        $websites = Website::whereHas('customers', function ($query) use ($customerIds) {
+            $query->whereIn('customer_id', $customerIds);
+        })
+        ->whereDoesntHave('customers', function ($query) use ($customerIds) {
+            $query->whereNotIn('customer_id', $customerIds);
+        })
+        ->get();
+        return view('bills.index',compact('customers','customerIds','websites'));
     }
 
     /**
