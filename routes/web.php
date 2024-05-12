@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\BillController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +24,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//customers
 Route::resource('customers', CustomerController::class);
+
+//websites
 Route::resource('websites', WebsiteController::class);
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('bills', BillController::class);
+
+

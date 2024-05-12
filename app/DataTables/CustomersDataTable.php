@@ -23,7 +23,7 @@ class CustomersDataTable extends DataTable
     {
 
         return (new EloquentDataTable($query))
-            ->addColumn('action','customers.datatables_actions')
+            ->addColumn('action','layouts.actions.customer_actions')
             ->setRowId('id');
     }
 
@@ -69,6 +69,11 @@ class CustomersDataTable extends DataTable
             Column::make('email'),
             Column::make('phone_no'),
             Column::make('bill'),
+            Column::computed('status')
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center'),
             Column::computed('action')
             ->exportable(false)
             ->printable(false)

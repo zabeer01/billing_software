@@ -11,4 +11,9 @@ class Customer extends Model
     protected $fillable = [
         'name', 'email', 'phone_no', 'bill',
     ];
+
+    public function websites()
+    {
+        return $this->belongsToMany(Website::class);
+    }
 }
