@@ -89,8 +89,12 @@ class BillController extends Controller
     {
         $ajaxData = session()->get('ajaxData');
         session()->flush();  
+        $billingWebsiteID = $ajaxData['billingWebsiteID'];  
+        /* $billedWebsites = Website::all(); */
+        //filtered websites
+        $billedWebsites  = Website::whereIn('id',$billingWebsiteID)->get();
         
-        return view('bills.invoice', compact('ajaxData'));
+        return view('bills.invoice', compact('billedWebsites'));
     }
     
 }

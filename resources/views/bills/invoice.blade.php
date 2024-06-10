@@ -1,21 +1,25 @@
 @extends('layouts.app2')
 
 @section('content')
-<div>
+<div class="container">
     <h3>Invoice</h3>
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>billingWebsiteID</th>
+                <th>WebsiteID</th>
+                <th>website_name</th>
+                <th>website_url</th>
+                <th>website_bill</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            $billingWebsiteID = $ajaxData['billingWebsiteID'];  
-            ?>
-            @foreach ($billingWebsiteID as $result)
+           
+            @foreach ($billedWebsites as $billedWebsite)
                 <tr>
-                    <td>{{ $result }}</td>
+                    <td>{{ $billedWebsite->id }}</td>
+                    <td>{{ $billedWebsite->name }}</td>
+                    <td>{{ $billedWebsite->url }}</td>
+                    <td>{{ $billedWebsite->bill }}</td>
                 </tr>
             @endforeach
         </tbody>
