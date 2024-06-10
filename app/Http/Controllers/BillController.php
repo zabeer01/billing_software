@@ -87,7 +87,7 @@ class BillController extends Controller
     
     public function invoiceGenerate()
     {
-        $ajaxData = session()->get('ajaxData');
+        $ajaxData = session()->get('ajaxData'); 
         session()->flush();  
         $billingWebsiteID = $ajaxData['billingWebsiteID'];  
         $billedWebsites  = Website::whereIn('id',$billingWebsiteID)->get();
