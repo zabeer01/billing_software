@@ -22,8 +22,7 @@ class BillController extends Controller
            // Retrieve the websites owned by all three customers
         $websites = Website::whereHas('customers', function ($query) use ($customerIds) {
             $query->whereIn('customer_id', $customerIds);
-        })
-        ->whereDoesntHave('customers', function ($query) use ($customerIds) {
+        })->whereDoesntHave('customers', function ($query) use ($customerIds) {
             $query->whereNotIn('customer_id', $customerIds);
         })
         ->get();
@@ -77,4 +76,21 @@ class BillController extends Controller
     {
         //
     }
+
+
+    public function payAjax(Request $request)
+    {
+        $ajaxData = $request->all(); 
+        session()->put('ajaxData', $ajaxData);
+        return response()->json(['redirect_url' => route('bills.invoice')]);
+    }
+    
+    public function invoiceGenerate()
+    {
+        $ajaxData = session()->get('ajaxData');
+        session()->flush();  
+        
+        return view('bills.invoice', compact('ajaxData'));
+    }
+    
 }

@@ -33,7 +33,7 @@ Route::resource('websites', WebsiteController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::post('/bills/pay-ajax', [BillController::class, 'payAjax'])->name('bills.payAjax');
+Route::get('/bills/invoice',[BillController::class, 'invoiceGenerate'])->name('bills.invoice');
 Route::resource('bills', BillController::class);
-
 
